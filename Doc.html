@@ -1,0 +1,118 @@
+# shahnoz.github.io
+<!DOCTYPE html>
+
+<html>
+        <head>
+		<title> Ватаниева </title>
+		<meta charset = " utf-8">
+		</head>
+		<body>
+		<p> <h1 align="center" style="color:blue"> Лабораторная работа №3 </h1></p>
+		<p> <h1 align="center" style="color:Green"> ВВЕДЕНИЕ В JAVASCRIPT </h1> </p>
+		
+		<p> <i>Первое и второе задание</p> </p>
+		<fieldset>
+		<div id="app" style="text-align: left;">
+		
+        <h3 id="date">Сегодня:</h3>
+        <h3 id="exam">До экзамена осталось:</h3>
+		 
+		 </div>
+		  </fieldset>
+		  
+		  <p><i> Третье задание </i></p>
+<fieldset>
+        <p>Выбрать фон:</p>
+        <div>
+<input Type= "radio" name= "color" value= "#FFFFFF " checked> White
+<input Type= "radio" name= "color" value= "#FFA07A " >LightSalmon
+<input Type= "radio" name= "color" value= "#00FF7F " >SpringGreen
+<input Type= "radio" name= "color" value= "#C0C0C0 " >Silver
+<input Type= "radio" name= "color" value= "#FF1493 " >DeepPink
+</div>
+</fieldset>
+ 
+ <p> <i> Четвертое задание</i> </p>
+ <fieldset>
+ 
+       <i><img src="Dobroe.jpg" id="image" style="max-width: 250px;"   alt=" ДОБРОЕ УТРО И ХОРОШЕГО ДНЯ "> </i>
+         <p id="popover"></p>
+ </fieldset>
+ 
+ 
+ <p> <i> Пятое задание</i> </p>
+ 
+ <fieldset>
+ 
+ <p> Калькулятор</p>
+ <div>
+        <form>
+             <input type="text" id="field1">
+             <input type="text" id="field2">
+ 
+             <button id="button">Разделить</button>
+        </form>
+  
+        <p id="result"></p>
+   </div>
+  </fieldset>
+      <script>
+       let date = new Date()
+  
+        
+         document.getElementById('date').innerHTML += ' ' + date.toUTCString();
+ 
+         let examDate = Date.parse('2018-05-20');
+        let timeDiff = Math.abs(date - examDate);
+         let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+         
+         document.getElementById('exam').innerHTML += ' ' + diffDays + ' дня';
+ 
+         document.querySelectorAll('input[type="radio"]').forEach(item => {
+            item.onclick = function () {
+                document.querySelector('body').style.backgroundColor = item.value;
+             }
+         })
+ 
+         document.getElementById('image').onmouseover = function (item) {
+            document.getElementById('popover').innerHTML = item.target.alt;
+         }
+  document.getElementById('image').onmouseleave = function (item) {
+             document.getElementById('popover').innerHTML = '';
+         }
+ 
+         let result = document.getElementById('result');
+ 
+         document.getElementById('button').onclick = function (event) {
+             event.preventDefault();
+             const field1 = document.getElementById('field1');
+             const field2 = document.getElementById('field2');
+            let res = calculator(field1, field2);
+             if (!res) {
+                field1.value = '';
+                field2.value = '';
+ 
+                 result.innerHTML = 'Ошибка!  Числа некорректны!';
+ 
+                 setTimeout(() => {
+                    result.innerHTML = '';
+                 }, 1000);
+ 
+                 return;
+             }
+ 
+             result.innerHTML = res;
+        }
+ 
+         function calculator (field1, field2) {
+            let value1 = parseFloat(field1.value);
+           let value2 = parseFloat(field2.value);
+            if (!value1 || !value2) {
+                return false;
+          }
+         return value1 / value2;
+         }
+      </script>
+  </body>
+  </html> 
+		
